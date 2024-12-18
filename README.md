@@ -1,61 +1,79 @@
-High-Dimensional Model Simulation Tool
-Overview
-This repository contains a single R script that implements a simulation tool designed to evaluate the performance of classification models in high-dimensional settings. The tool is developed as part of the undergraduate thesis titled "Multinomial Logistic Regression in High Dimensions".
+High-Dimensional Model Simulation Tool Overview
+
+This repository contains a R script that implements a simulation tool designed to evaluate the performance of classification models in high-dimensional settings. The tool is developed as part of the undergraduate thesis titled "Multinomial Logistic Regression in High Dimensions".
 
 Purpose
+
 The core problem addressed by this project is the evaluation of classification algorithms when the number of predictors (features) is large compared to the sample size. High-dimensional datasets pose challenges to traditional methods, making it critical to assess their accuracy, robustness, and parameter recovery capabilities.
 
 Features
+
 The script provides:
 
-Synthetic Data Generation: Produces training and testing datasets with user-defined properties, including the number of features, sample size, and covariance structure.
-Model Evaluation: Implements multiple classification models:
-Linear Discriminant Analysis (LDA)
-Multinomial Logistic Regression (MLR)
-Penalized Regression models (LASSO and Elastic Net)
-Random Forest
-Metrics Calculation: Quantifies model performance using misclassification rates and parameter recovery metrics, such as precision and recall for penalized regression models.
-Simulation Control: Allows configuration of parameters for the simulation, including the number of iterations and dataset dimensions.
-Usage
-To use the script, clone this repository and execute the Simulate function in R. Below is an example of how to set up and run a simulation:
+- Synthetic Data Generation: Produces training and testing datasets with user-defined properties, including the number of features, sample size, and covariance structure.
 
-# Load the script
+- Model Evaluation: Implements multiple classification models: Linear Discriminant Analysis (LDA) Multinomial Logistic Regression (MLR) Penalized Regression models (LASSO and Elastic Net) Random Forest
+
+- Metrics Calculation: Quantifies model performance using misclassification rates and parameter recovery metrics, such as precision and recall for penalized regression models.
+
+- Simulation Control: Allows configuration of parameters for the simulation, including the number of iterations and dataset dimensions.
+
+- Using the script:
+
+1. Clone the repository,
+2. Install the latest version of R available, download RStudio or some development environment for R,
+3. Run the toy example set in the script,
+4. Modify the set parameters (optional)
+
+Load the script
+
 source("Simulate.R")
 
-# Define parameters
-sigma <- diag(10)  # Covariance matrix
-beta.list <- list(c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0))  # True coefficients
-p <- 10            # Number of predictors
-n.train <- 150     # Training sample size
-n.test <- 2000     # Testing sample size
-R <- 50            # Number of repetitions
+Example for parameter definition:
 
-# Run the simulation
-results <- Simulate(sigma, beta.list, p, n.train, n.test, R)
+x <- 10
+Sigma <- matrix(0, x, x)
+diag(Sigma) <- 1
+nnull <- round(.3*x, 0)
+beta1 <- c(rep(0, x-nnull), runif(nnull, -0.5, 0.5))
+beta2 <- c(runif(nnull, -0.5, 0.5), rep(0, x-nnull))
 
-# View the results
+Run the simulation
+
+results <- Simulate(
+  sigma = Sigma,
+  beta.list = list(beta1, beta2),
+  p = x,
+  n.train = 150,
+  n.test = 2000,
+  R = 10
+)
+
+View the results
+
 print(results)
 
-Output
-The script generates:
+Output The script outputs:
 
-Misclassification Rates: Mean and standard deviation for all models.
-Precision and Recall: For LASSO and Elastic Net models.
-Simulation Metadata: Total time, number of attempts, and successful iterations.
-Dependencies
-The script requires the following R packages:
+- Misclassification rates: mean and standard deviation for all models. - Precision and Recall: For LASSO and Elastic Net models.
+- Metadata: Total time, number of attempts and successful iterations.
 
-glmnet (for LASSO and Elastic Net)
-randomForest (for Random Forest)
-You can install these packages using:
+If you need to install a dependency, you can do so as follows:
+
+Example: install the dependencies 'glmnet' and 'randomForest'
 
 install.packages(c("glmnet", "randomForest"))
 
 Author
+
 Molina, Agustin
-Undergraduate thesis project at National University of Rio Cuarto.
+
+Undergraduate thesis project at the National University of Río Cuarto.
+
 Year
+
 2024
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+License This project is licensed under the MIT License.
+
+See the LICENSE file for details.
