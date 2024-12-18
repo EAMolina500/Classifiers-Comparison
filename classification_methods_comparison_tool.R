@@ -1,3 +1,17 @@
+#=========================================
+# File: classification_methods_comparison_tool.R
+# 
+# Description: 
+# This script provides a tool for comparing classification methods, 
+# and all the functions involved.
+#
+# Dependencies:
+# - Libraries: Matrix, MASS, randomForest, plyr, glmnet, mvnfast, base, nnet
+#
+# Author: Molina, Agustin
+# Date: December 2024
+#=========================================
+
 rm(list = ls())
 
 library(Matrix)
@@ -13,6 +27,14 @@ library(nnet)
 ## Auxiliar functions
 ##################################
 
+#' GenerateDataX
+#' 
+#' Generates a matrix of multivariate normal random variables.
+#' 
+#' @param n Integer. Number of samples.
+#' @param p Integer. Number of features.
+#' @param sigma Matrix. Covariance matrix for the multivariate normal distribution.
+#' @return Matrix of dimensions (n, p) containing generated data, or NULL on error.
 GenerateDataX <- function(n, p, sigma) {
   tryCatch({
     mvrnorm(n, rep(1, p), sigma)
@@ -22,6 +44,13 @@ GenerateDataX <- function(n, p, sigma) {
   })
 }
 
+#' GenerateDataY
+#' 
+#' Generates class labels based on logits computed using input data and coefficients.
+#' 
+#' @param x Matrix. Input data (samples x features).
+#' @param beta.list List. Coefficients for each class.
+#' @return Vector of class labels for each sample, or NULL on error.
 GenerateDataY <- function(x, beta.list) {
   tryCatch({
     logits <- sapply(1:length(beta.list), function(i) x %*% beta.list[[i]])
@@ -35,6 +64,13 @@ GenerateDataY <- function(x, beta.list) {
   })
 }
 
+#' Evaluate
+#' 
+#' Calculates the classification error rate.
+#' 
+#' @param y.true Vector. True class labels.
+#' @param y.pred Vector. Predicted class labels.
+#' @return Numeric value representing the error rate, or NA on error.
 Evaluate <- function(y.true, y.pred) {
   tryCatch({
     mean(y.true != y.pred)
@@ -44,6 +80,15 @@ Evaluate <- function(y.true, y.pred) {
   })
 }
 
+#' PrepareData
+#' 
+#' Formats data matrix and assigns column names.
+#' 
+#' @param x Matrix. Input data.
+#' @param y Vector. Class labels (not used in this function).
+#' @param n Integer. Number of samples.
+#' @param p Integer. Number of features.
+#' @return Matrix with named columns, or NULL on error.
 PrepareData <- function(x, y, n, p) {
   tryCatch({
     x.names <- paste0("X", seq_len(p))
@@ -55,6 +100,14 @@ PrepareData <- function(x, y, n, p) {
   })
 }
 
+#' GetLambdaMinByCrossValidation
+#' 
+#' Finds the optimal lambda using cross-validation for LASSO or Elastic Net.
+#' 
+#' @param method String. "LML" for LASSO, "LME" for Elastic Net.
+#' @param x.train Matrix. Training data.
+#' @param y.train Vector. Training labels.
+#' @return Numeric value for the optimal lambda, or NULL on error.
 GetLambdaMinByCrossValidation <- function(method, x.train, y.train) {
   tryCatch({
     alpha <- switch(
@@ -76,6 +129,14 @@ GetLambdaMinByCrossValidation <- function(method, x.train, y.train) {
 ## Functions to Train a model and Predict using a model
 ##################################
 
+#' Train
+#' 
+#' Trains a model using the specified method.
+#' 
+#' @param method String. One of "LDA", "LG", "LML", "RF", or "LME".
+#' @param x.train Matrix. Training data.
+#' @param y.train Vector. Training labels.
+#' @return Trained model object, or NULL on error.
 Train <- function(method, x.train, y.train) {
   tryCatch({
     switch(
@@ -93,6 +154,15 @@ Train <- function(method, x.train, y.train) {
   })
 }
 
+#' Predict
+#' 
+#' Makes predictions using a trained model.
+#' 
+#' @param method String. Method used for training.
+#' @param model Object. Trained model.
+#' @param x.test Matrix. Test data.
+#' @param lambda.min Numeric. Regularization parameter for LASSO/Elastic Net.
+#' @return Vector of predicted labels, or NULL on error.
 Predict <- function(method, model, x.test, lambda.min = NULL) {
   tryCatch({
     switch(
@@ -114,6 +184,13 @@ Predict <- function(method, model, x.test, lambda.min = NULL) {
 ## Functions to calculate precision and recall measures
 ##################################
 
+#' ExtractCoefficients
+#' 
+#' Extracts the coefficients from a trained model for a specific lambda value.
+#' 
+#' @param model Object. The trained model containing coefficients.
+#' @param lambda.min Numeric. The lambda value for which coefficients are extracted.
+#' @return Numeric vector. Unlisted coefficients across all classes.
 ExtractCoefficients <- function(model, lambda.min) {
   beta.list <- lapply(1:length(model$beta), function(k) {
     unname(model$beta[[k]][, which(model$lambda == lambda.min)])
@@ -122,6 +199,13 @@ ExtractCoefficients <- function(model, lambda.min) {
   unlist(beta.list)
 }
 
+#' CalculatePrecisionRecall
+#' 
+#' Computes precision and recall metrics based on true and estimated coefficients.
+#' 
+#' @param beta.true.list List. True beta coefficients for each class.
+#' @param beta.estim.list List. Estimated beta coefficients for each class.
+#' @return List. Contains `recall` and `precision` values.
 CalculatePrecisionRecall <- function(beta.true.list, beta.estim.list) {
   beta.true <- unlist(beta.true.list)
   beta.estim <- unlist(beta.estim.list)
@@ -143,12 +227,33 @@ CalculatePrecisionRecall <- function(beta.true.list, beta.estim.list) {
 ## Functions to get misclasification rate 
 ##################################
 
+#' MiscRateByLDA
+#' 
+#' Calculates the misclassification rate using Linear Discriminant Analysis (LDA).
+#' 
+#' @param x.train Matrix. Training feature data.
+#' @param y.train Factor. Training labels.
+#' @param x.test Matrix. Test feature data.
+#' @param y.test Factor. Test labels.
+#' @return Numeric. Misclassification rate for LDA.
 MiscRateByLDA <- function(x.train, y.train, x.test, y.test) {
   lda.model <- Train("LDA", x.train, y.train)
   lda.prediction <- Predict("LDA", lda.model, x.test)
   Evaluate(y.test, lda.prediction)
 }
 
+#' MiscRateByLG
+#' 
+#' Calculates the misclassification rate using Logistic Regression (LG).
+#' 
+#' @param x.train Matrix. Training feature data.
+#' @param y.train Factor. Training labels.
+#' @param x.test Matrix. Test feature data.
+#' @param y.test Factor. Test labels.
+#' @param n Integer. Number of observations in the training data.
+#' @param m Integer. Number of observations in the test data.
+#' @param p Integer. Number of features in the dataset.
+#' @return Numeric. Misclassification rate for Logistic Regression.
 MiscRateByLG <- function(x.train, y.train, x.test, y.test, n, m, p) {
   X.train <- PrepareData(x.train, y.train, n, p)
   lg.model <- Train("LG", X.train, y.train)
@@ -159,7 +264,16 @@ MiscRateByLG <- function(x.train, y.train, x.test, y.test, n, m, p) {
   Evaluate(y.test, lg.prediction)
 }
 
-
+#' MiscRateByLML
+#' 
+#' Calculates the misclassification rate using LASSO logistic regression.
+#' Extracts beta coefficients for further analysis.
+#' 
+#' @param x.train Matrix. Training feature data.
+#' @param y.train Factor. Training labels.
+#' @param x.test Matrix. Test feature data.
+#' @param y.test Factor. Test labels.
+#' @return List. Contains `misc.rate` (misclassification rate) and `beta.hat` (estimated coefficients).
 MiscRateByLML <- function(x.train, y.train, x.test, y.test) {
   lml.model <- Train("LML", x.train, y.train)
   lml.lmin <- GetLambdaMinByCrossValidation("LML", x.train, y.train)
@@ -174,14 +288,31 @@ MiscRateByLML <- function(x.train, y.train, x.test, y.test) {
   )
 }
 
-
+#' MiscRateByRF
+#' 
+#' Calculates the misclassification rate using Random Forest (RF).
+#' 
+#' @param x.train Matrix. Training feature data.
+#' @param y.train Factor. Training labels.
+#' @param x.test Matrix. Test feature data.
+#' @param y.test Factor. Test labels.
+#' @return Numeric. Misclassification rate for Random Forest.
 MiscRateByRF <- function(x.train, y.train, x.test, y.test) {
   rf.model <- Train("RF", x.train, y.train)
   rf.prediction <- Predict("RF", rf.model, x.test)
   Evaluate(y.test, rf.prediction)
 }
 
-
+#' MiscRateByLME
+#' 
+#' Calculates the misclassification rate using Elastic Net logistic regression.
+#' Extracts beta coefficients for further analysis.
+#' 
+#' @param x.train Matrix. Training feature data.
+#' @param y.train Factor. Training labels.
+#' @param x.test Matrix. Test feature data.
+#' @param y.test Factor. Test labels.
+#' @return List. Contains `misc.rate` (misclassification rate) and `beta.hat` (estimated coefficients).
 MiscRateByLME <- function(x.train, y.train, x.test, y.test) {
   lme.model <- Train("LME", x.train, y.train)
   lme.lmin <- GetLambdaMinByCrossValidation("LME", x.train, y.train)
@@ -200,6 +331,48 @@ MiscRateByLME <- function(x.train, y.train, x.test, y.test) {
 ## Main function to execute the simulation 
 ##################################
 
+#' Simulate
+#' 
+#' Executes a simulation to evaluate classification models and calculate 
+#' precision-recall metrics for LASSO and Elastic Net logistic regression.
+#' 
+#' @param sigma Matrix. Covariance matrix used to generate the predictors (x).
+#' @param beta.list List. True coefficients for each class to generate the responses (y).
+#' @param p Integer. Number of predictors. Default is 10.
+#' @param n.train Integer. Number of training samples. Default is 150.
+#' @param n.test Integer. Number of test samples. Default is 2000.
+#' @param R Integer. Number of simulation repetitions to perform. Default is 50.
+#' 
+#' @return A list containing the following elements:
+#' \describe{
+#'   \item{total.time}{Duration of the simulation.}
+#'   \item{misc.rate.mean}{Mean misclassification rates for all methods across simulations.}
+#'   \item{standard.deviation}{Standard deviation of misclassification rates for all methods.}
+#'   \item{misc.rate}{Matrix of misclassification rates for each method in each simulation.}
+#'   \item{attempts}{Number of total attempts made to complete the simulations.}
+#'   \item{completed}{Number of successfully completed simulations.}
+#'   \item{lasso.recall}{Mean recall for LASSO across simulations.}
+#'   \item{lasso.precision}{Mean precision for LASSO across simulations.}
+#'   \item{elastic.net.recall}{Mean recall for Elastic Net across simulations.}
+#'   \item{elastic.net.precision}{Mean precision for Elastic Net across simulations.}
+#' }
+#' 
+#' @details 
+#' The function performs multiple simulations to evaluate the performance of different 
+#' classification models: Linear Discriminant Analysis (LDA), Logistic Regression (LG), 
+#' LASSO Logistic Regression (LML), Random Forest (RF), and Elastic Net Logistic Regression (LME).
+#' 
+#' For LASSO and Elastic Net, it calculates precision and recall based on the estimated 
+#' coefficients compared to the true coefficients. Simulations terminate either when 
+#' the specified number of repetitions (\code{R}) is reached or the maximum number of 
+#' attempts (\code{R * 10}) is exceeded.
+#' 
+#' @examples
+#' sigma <- diag(10) # Example covariance matrix
+#' beta.list <- list(rep(1, 10), rep(0, 10)) # Example coefficients
+#' results <- Simulate(sigma, beta.list, p = 10, n.train = 100, n.test = 500, R = 10)
+#' 
+#' @export
 Simulate <- function(
     sigma, beta.list, p = 10, n.train = 150, n.test = 2000, R = 50
 ) {
