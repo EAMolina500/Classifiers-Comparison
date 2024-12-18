@@ -27,19 +27,22 @@ The script provides:
 
 Load the script
 
-source("Simulate.R")
+'source("Simulate.R")'
 
 Example for parameter definition:
 
+'
 x <- 10
 Sigma <- matrix(0, x, x)
 diag(Sigma) <- 1
 nnull <- round(.3*x, 0)
 beta1 <- c(rep(0, x-nnull), runif(nnull, -0.5, 0.5))
 beta2 <- c(runif(nnull, -0.5, 0.5), rep(0, x-nnull))
+'
 
 Run the simulation
 
+'
 results <- Simulate(
   sigma = Sigma,
   beta.list = list(beta1, beta2),
@@ -48,10 +51,11 @@ results <- Simulate(
   n.test = 2000,
   R = 10
 )
+'
 
 View the results
 
-print(results)
+'print(results)'
 
 Output The script outputs:
 
@@ -62,7 +66,7 @@ If you need to install a dependency, you can do so as follows:
 
 Example: install the dependencies 'glmnet' and 'randomForest'
 
-install.packages(c("glmnet", "randomForest"))
+'install.packages(c("glmnet", "randomForest"))'
 
 Author
 
