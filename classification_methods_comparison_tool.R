@@ -4,8 +4,8 @@
 #' Final Project: Development of a Simulation Tool for Model Evaluation  
 #' 
 #' This script is part of the development of a simulation tool designed to evaluate the performance 
-#' of classification models in high-dimensional settings. It is closely tied to my undergraduate thesis, 
-#' titled "Multinomial Logistic Regression in High Dimensions."  
+#' of classification models in high-dimensional settings. This tool was developed within the framework of my 
+#' undergraduate thesis, entitled "High-dimensional multinomial logistic regression".
 #' 
 #' The core problem addressed is the evaluation of model accuracy and robustness when applied to datasets 
 #' with a large number of predictors (features) relative to the sample size. Such scenarios, common in fields 
@@ -29,10 +29,6 @@ library(glmnet)
 library(mvnfast)
 library(base)
 library(nnet)
-
-##################################
-## Auxiliar functions
-##################################
 
 #' GenerateDataX
 #' 
@@ -92,11 +88,10 @@ Evaluate <- function(y.true, y.pred) {
 #' Formats data matrix and assigns column names.
 #' 
 #' @param x Matrix. Input data.
-#' @param y Vector. Class labels (not used in this function).
 #' @param n Integer. Number of samples.
 #' @param p Integer. Number of features.
 #' @return Matrix with named columns, or NULL on error.
-PrepareData <- function(x, y, n, p) {
+PrepareData <- function(x, n, p) {
   tryCatch({
     x.names <- paste0("X", seq_len(p))
     X <- matrix(x, n, dimnames = list(NULL, x.names))
@@ -131,10 +126,6 @@ GetLambdaMinByCrossValidation <- function(method, x.train, y.train) {
     NULL
   })
 }
-
-##################################
-## Functions to Train a model and Predict using a model
-##################################
 
 #' Train
 #' 
@@ -187,10 +178,6 @@ Predict <- function(method, model, x.test, lambda.min = NULL) {
   })
 }
 
-##################################
-## Functions to calculate precision and recall measures
-##################################
-
 #' ExtractCoefficients
 #' 
 #' Extracts the coefficients from a trained model for a specific lambda value.
@@ -230,10 +217,6 @@ CalculatePrecisionRecall <- function(beta.true.list, beta.estim.list) {
   )
 }
 
-##################################
-## Functions to get misclasification rate 
-##################################
-
 #' MiscRateByLDA
 #' 
 #' Calculates the misclassification rate using Linear Discriminant Analysis (LDA).
@@ -262,10 +245,10 @@ MiscRateByLDA <- function(x.train, y.train, x.test, y.test) {
 #' @param p Integer. Number of features in the dataset.
 #' @return Numeric. Misclassification rate for Logistic Regression.
 MiscRateByLG <- function(x.train, y.train, x.test, y.test, n, m, p) {
-  X.train <- PrepareData(x.train, y.train, n, p)
+  X.train <- PrepareData(x.train, n, p)
   lg.model <- Train("LG", X.train, y.train)
   
-  X.test <- PrepareData(x.test, y.test, m, p)
+  X.test <- PrepareData(x.test, m, p)
   lg.prediction <- Predict("LG", lg.model, X.test)
   
   Evaluate(y.test, lg.prediction)
@@ -334,10 +317,6 @@ MiscRateByLME <- function(x.train, y.train, x.test, y.test) {
   )
 }
 
-##################################
-## Main function to execute the simulation 
-##################################
-
 #' Simulate
 #' 
 #' Executes a simulation to evaluate classification models and calculate 
@@ -373,13 +352,6 @@ MiscRateByLME <- function(x.train, y.train, x.test, y.test) {
 #' coefficients compared to the true coefficients. Simulations terminate either when 
 #' the specified number of repetitions (\code{R}) is reached or the maximum number of 
 #' attempts (\code{R * 10}) is exceeded.
-#' 
-#' @examples
-#' sigma <- diag(10) # Example covariance matrix
-#' beta.list <- list(rep(1, 10), rep(0, 10)) # Example coefficients
-#' results <- Simulate(sigma, beta.list, p = 10, n.train = 100, n.test = 500, R = 10)
-#' 
-#' @export
 Simulate <- function(
     sigma, beta.list, p = 10, n.train = 150, n.test = 2000, R = 50
 ) {
@@ -450,11 +422,9 @@ Simulate <- function(
   )
 }
 
-
-
-######################################
-## Initialize values
-######################################
+#'
+#' Execution of the main function: toy example
+#'
 
 x <- 10
 Sigma <- matrix(0, x, x)
@@ -477,9 +447,9 @@ results <- Simulate(
 
 message("Completed: ", results$completed)
 
-######################################
-## Printing results
-######################################
+#'
+#' Results
+#'
 
 cat("3 clases - R 10 - n 150 - m 2000 - p 10")
 cat("\nTiempo total\n")
@@ -504,5 +474,3 @@ boxplot(data$values ~ data$ind, names=label,
         xlab='Boxplots de 5 métodos para p=10', 
         ylab='Tasas de mal clasificación para R=10 réplicas', 
         main='Desempeño de clasificadores lineales para K=3 clases')
-
-
