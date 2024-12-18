@@ -1,15 +1,22 @@
 #=========================================
-# File: classification_methods_comparison_tool.R
-# 
-# Description: 
-# This script provides a tool for comparing classification methods, 
-# and all the functions involved.
-#
-# Dependencies:
-# - Libraries: Matrix, MASS, randomForest, plyr, glmnet, mvnfast, base, nnet
-#
-# Author: Molina, Agustin
-# Date: December 2024
+#' Simulate
+#' 
+#' Final Project: Development of a Simulation Tool for Model Evaluation  
+#' 
+#' This script is part of the development of a simulation tool designed to evaluate the performance 
+#' of classification models in high-dimensional settings. It is closely tied to my undergraduate thesis, 
+#' titled "Multinomial Logistic Regression in High Dimensions."  
+#' 
+#' The core problem addressed is the evaluation of model accuracy and robustness when applied to datasets 
+#' with a large number of predictors (features) relative to the sample size. Such scenarios, common in fields 
+#' like genomics, finance, and image recognition, often challenge traditional classification techniques.  
+#' 
+#' Through simulation, this tool generates synthetic datasets, applies various classification methods—including 
+#' Linear Discriminant Analysis, Multinomial Logistic Regression, Penalized Regression (LASSO, Elastic Net), and 
+#' Random Forest—and quantifies their misclassification rates and parameter recovery metrics (precision and recall).  
+#' 
+#' Author: Molina, Agustin
+#' Year: 2024  
 #=========================================
 
 rm(list = ls())
