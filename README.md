@@ -42,7 +42,9 @@ The core problem addressed by this project is the evaluation of classification a
    ```
 2. Install the latest version of R and an IDE like RStudio.
 3. Load the main script using
-`source("scripts/classification_methods_comparison_tool.R")`
+```
+source("scripts/classification_methods_comparison_tool.R")
+```
 4. Run the toy example included in the script or modify the parameters as needed.
 
 ## Example: Parameter Definition:
@@ -71,7 +73,9 @@ results <- Simulate(
 
 ## View results
 
-`print(results)`
+```
+print(results)
+```
 
 ## Outputs included:
 
@@ -83,13 +87,15 @@ results <- Simulate(
 
 To install dependencies, use the following command:
 
-`install.packages(c("glmnet", "randomForest"))`
+```
+install.packages(c("glmnet", "randomForest"))
+```
 
-# Author
+## Author
 
 Molina, Agustin
-Undergraduate Student at the National University of Río Cuarto
+### Undergraduate Student at the National University of Río Cuarto
 
-# Year
+## Year
 
 2024
