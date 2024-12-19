@@ -59,7 +59,7 @@ results <- Simulate(
 
 `print(results)`
 
-# Output The script outputs:
+# The script outputs:
 
 - <ins>Misclassification rates</ins>: mean and standard deviation for all models. 
 - <ins>Precision and Recall</ins>: For LASSO and Elastic Net models.
