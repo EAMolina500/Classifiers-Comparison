@@ -43,7 +43,7 @@ git clone https://github.com/your-repo-name.git
 2. Install the latest version of R and an IDE like RStudio.
 3. Load the main script using
 ```
-source("scripts/classification_methods_comparison_tool.R")
+source("scripts/classifiers_comparison_tool.R")
 ```
 4. Run the toy example included in the script or modify the parameters as needed.
 
