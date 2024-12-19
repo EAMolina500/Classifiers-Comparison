@@ -10,7 +10,7 @@ The core problem addressed by this project is the evaluation of classification a
 
 # Features
 
-### <ins>The script provides</ins>:
+### <ins>Script provides</ins>:
 
 - <ins>Synthetic Data Generation</ins>: Produces training and testing datasets with user-defined properties, including the number of features, sample size, and covariance structure.
 
@@ -27,7 +27,7 @@ The core problem addressed by this project is the evaluation of classification a
 3. Run the toy example set in the script,
 4. Modify the set parameters (optional)
 
-# Load the script
+# Load script
 
 `source("Simulate.R")`
 
@@ -42,7 +42,7 @@ beta1 <- c(rep(0, x-nnull), runif(nnull, -0.5, 0.5))
 beta2 <- c(runif(nnull, -0.5, 0.5), rep(0, x-nnull))
 ```
 
-# Run the simulation
+# Run simulation
 
 ```
 results <- Simulate(
@@ -55,11 +55,11 @@ results <- Simulate(
 )
 ```
 
-# View the results
+# View results
 
 `print(results)`
 
-# The script outputs:
+# Script outputs:
 
 - <ins>Misclassification rates</ins>: mean and standard deviation for all models. 
 - <ins>Precision and Recall</ins>: For LASSO and Elastic Net models.
