@@ -1,16 +1,16 @@
-### High-Dimensional Model Simulation Tool Overview
+# High-Dimensional Model Simulation Tool Overview
 
-# Undergraduate thesis project at the National University of Río Cuarto.
+### Undergraduate thesis project at the National University of Río Cuarto.
 
 This repository contains a R script that implements a simulation tool designed to evaluate the performance of classification models in high-dimensional settings. The tool is developed as part of the undergraduate thesis titled "Multinomial Logistic Regression in High Dimensions".
 
-## Purpose
+# Purpose
 
 The core problem addressed by this project is the evaluation of classification algorithms when the number of predictors (features) is large compared to the sample size. High-dimensional datasets pose challenges to traditional methods, making it critical to assess their accuracy, robustness, and parameter recovery capabilities.
 
-## Features
+# Features
 
-# <ins>The script provides</ins>:
+### <ins>The script provides</ins>:
 
 - <ins>Synthetic Data Generation</ins>: Produces training and testing datasets with user-defined properties, including the number of features, sample size, and covariance structure.
 
@@ -27,11 +27,11 @@ The core problem addressed by this project is the evaluation of classification a
 3. Run the toy example set in the script,
 4. Modify the set parameters (optional)
 
-## Load the script
+# Load the script
 
 `source("Simulate.R")`
 
-## Example for parameter definition:
+# Example for parameter definition:
 
 ```
 x <- 10
@@ -42,7 +42,7 @@ beta1 <- c(rep(0, x-nnull), runif(nnull, -0.5, 0.5))
 beta2 <- c(runif(nnull, -0.5, 0.5), rep(0, x-nnull))
 ```
 
-## Run the simulation
+# Run the simulation
 
 ```
 results <- Simulate(
@@ -55,26 +55,26 @@ results <- Simulate(
 )
 ```
 
-## View the results
+# View the results
 
 `print(results)`
 
-## Output The script outputs:
+# Output The script outputs:
 
 - <ins>Misclassification rates</ins>: mean and standard deviation for all models. 
 - <ins>Precision and Recall</ins>: For LASSO and Elastic Net models.
 - <ins>Metadata</ins>: Total time, number of attempts and successful iterations.
 
-## If you need to install a dependency, you can do so as follows:
+# If you need to install a dependency, you can do so as follows:
 
-# <ins>Example</ins>: install the dependencies 'glmnet' and 'randomForest'
+### <ins>Example</ins>: install the dependencies 'glmnet' and 'randomForest'
 
 `install.packages(c("glmnet", "randomForest"))`
 
-## Author
+# Author
 
 Molina, Agustin
 
-## Year
+# Year
 
 2024
