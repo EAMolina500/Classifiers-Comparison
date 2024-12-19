@@ -37,9 +37,9 @@ The core problem addressed by this project is the evaluation of classification a
 ## Usage Instructions
 
 1. Clone the repository:  
-   ```
-   git clone https://github.com/your-repo-name.git
-   ```
+```
+git clone https://github.com/your-repo-name.git
+```
 2. Install the latest version of R and an IDE like RStudio.
 3. Load the main script using
 ```
@@ -104,8 +104,6 @@ install.packages(c("glmnet", "randomForest"))
 ## Author
 
 Molina, Agustin
-
----
 
 ## Year
 
