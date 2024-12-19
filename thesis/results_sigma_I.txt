@@ -1,0 +1,534 @@
+7 clases - R 50 - n 1500 - m 20000 - p 10
+Tiempo total
+Time difference of 8.597329 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.079 0.028 0.019 0.107 0.022
+
+SD por metodo
+[1] 0.008 0.005 0.002 0.005 0.003
+
+Lasso recall
+[1] 0.99
+
+Lasso precision
+[1] 0.407
+
+Elastic net recall
+[1] 0.993
+
+Elastic net precision
+[1] 0.328
+
+======================================
+
+7 clases - R 50 - n 1500 - m 20000 - p 50
+Tiempo total
+Time difference of 24.41659 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.132 0.095 0.062 0.348 0.068
+
+SD por metodo
+[1] 0.007 0.007 0.004 0.006 0.005
+
+Lasso recall
+[1] 0.874
+
+Lasso precision
+[1] 0.435
+
+Elastic net recall
+[1] 0.923
+
+Elastic net precision
+[1] 0.365
+
+Repeticiones fallidas: 88
+
+======================================
+
+7 clases - R 50 - n 1500 - m 20000 - p 100
+Tiempo total
+Time difference of 20.05296 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.194 0.183 0.122 0.434 0.129
+
+SD por metodo
+[1] 0.006 0.010 0.007 0.003 0.007
+
+Lasso recall
+[1] 0.884
+
+Lasso precision
+[1] 0.462
+
+Elastic net recall
+[1] 0.914
+
+Elastic net precision
+[1] 0.395
+
+Repeticiones fallidas: 0
+
+======================================
+
+7 clases - R 50 - n 1500 - m 20000 - p 200
+Tiempo total
+Time difference of 29.00465 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.283 0.323 0.204 0.567 0.207
+
+SD por metodo
+[1] 0.006 0.010 0.006 0.005 0.006
+
+Lasso recall
+[1] 0.803
+
+Lasso precision
+[1] 0.501
+
+Elastic net recall
+[1] 0.84
+
+Elastic net precision
+[1] 0.446
+
+Repeticiones fallidas: 0
+
+======================================
+======================================
+======================================
+
+6 clases - R 50 - n 1500 - m 20000 - p 200
+Tiempo total
+Time difference of 26.32391 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.265 0.295 0.184 0.555 0.189
+
+SD por metodo
+[1] 0.005 0.014 0.006 0.006 0.006
+
+Lasso recall
+[1] 0.841
+
+Lasso precision
+[1] 0.484
+
+Elastic net recall
+[1] 0.865
+
+Elastic net precision
+[1] 0.437
+
+Repeticiones fallidas: 0
+
+======================================
+
+6 clases - R 50 - n 1500 - m 20000 - p 100
+Tiempo total
+Time difference of 17.54208 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.177 0.157 0.106 0.421 0.112
+
+SD por metodo
+[1] 0.005 0.008 0.005 0.004 0.005
+
+Lasso recall
+[1] 0.897
+
+Lasso precision
+[1] 0.435
+
+Elastic net recall
+[1] 0.905
+
+Elastic net precision
+[1] 0.382
+
+Repeticiones fallidas: 0
+
+======================================
+
+
+6 clases - R 50 - n 1500 - m 20000 - p 50
+Tiempo total
+Time difference of 19.17371 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.119 0.082 0.053 0.337 0.058
+
+SD por metodo
+[1] 0.007 0.007 0.004 0.007 0.004
+
+Lasso recall
+[1] 0.899
+
+Lasso precision
+[1] 0.424
+
+Elastic net recall
+[1] 0.928
+
+Elastic net precision
+[1] 0.361
+
+Repeticiones fallidas: 54
+
+======================================
+
+6 clases - R 50 - n 1500 - m 20000 - p 10
+Tiempo total
+Time difference of 7.570974 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.071 0.022 0.015 0.094 0.018
+
+SD por metodo
+[1] 0.007 0.003 0.002 0.005 0.002
+
+Lasso recall
+[1] 0.986
+
+Lasso precision
+[1] 0.37
+
+Elastic net recall
+[1] 0.991
+
+Elastic net precision
+[1] 0.317
+
+Repeticiones fallidas: 4
+
+======================================
+======================================
+======================================
+
+
+5 clases - R 50 - n 1500 - m 20000 - p 10
+Tiempo total
+Time difference of 6.155068 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.071 0.020 0.013 0.130 0.016
+
+SD por metodo
+[1] 0.007 0.003 0.002 0.005 0.002
+
+Lasso recall
+[1] 0.933
+
+Lasso precision
+[1] 0.371
+
+Elastic net recall
+[1] 0.991
+
+Elastic net precision
+[1] 0.333
+
+Repeticiones fallidas: 0
+
+======================================
+
+5 clases - R 50 - n 1500 - m 20000 - p 50
+Tiempo total
+Time difference of 13.50197 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.099 0.064 0.044 0.275 0.047
+
+SD por metodo
+[1] 0.006 0.006 0.003 0.005 0.003
+
+Lasso recall
+[1] 0.888
+
+Lasso precision
+[1] 0.443
+
+Elastic net recall
+[1] 0.935
+
+Elastic net precision
+[1] 0.369
+
+Repeticiones fallidas: 12
+
+======================================
+
+ clases - R 50 - n 1500 - m 20000 - p 100
+Tiempo total
+Time difference of 18.99812 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.153 0.132 0.088 0.378 0.094
+
+SD por metodo
+[1] 0.006 0.008 0.004 0.003 0.004
+
+Lasso recall
+[1] 0.874
+
+Lasso precision
+[1] 0.452
+
+Elastic net recall
+[1] 0.904
+
+Elastic net precision
+[1] 0.388
+
+Repeticiones fallidas: 0
+
+======================================
+
+5 clases - R 50 - n 1500 - m 20000 - p 200
+Tiempo total
+Time difference of 25.55043 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.237 0.249 0.157 0.537 0.162
+
+SD por metodo
+[1] 0.007 0.015 0.007 0.003 0.006
+
+Lasso recall
+[1] 0.837
+
+Lasso precision
+[1] 0.481
+
+Elastic net recall
+[1] 0.867
+
+Elastic net precision
+[1] 0.433
+
+Repeticiones fallidas: 0
+
+======================================
+======================================
+======================================
+
+4 clases - R 50 - n 1500 - m 20000 - p 200
+Tiempo total
+Time difference of 24.20525 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.195 0.202 0.125 0.460 0.128
+
+SD por metodo
+[1] 0.007 0.010 0.007 0.006 0.007
+
+Lasso recall
+[1] 0.876
+
+Lasso precision
+[1] 0.457
+
+Elastic net recall
+[1] 0.886
+
+Elastic net precision
+[1] 0.429
+
+Repeticiones fallidas: 0
+
+======================================
+
+4 clases - R 50 - n 1500 - m 20000 - p 100
+Tiempo total
+Time difference of 16.38764 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.125 0.102 0.065 0.345 0.071
+
+SD por metodo
+[1] 0.005 0.008 0.005 0.003 0.005
+
+Lasso recall
+[1] 0.94
+
+Lasso precision
+[1] 0.426
+
+Elastic net recall
+[1] 0.923
+
+Elastic net precision
+[1] 0.381
+
+Repeticiones fallidas: 0
+
+======================================
+
+4 clases - R 50 - n 1500 - m 20000 - p 50
+Tiempo total
+Time difference of 10.88321 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.093 0.052 0.038 0.272 0.042
+
+SD por metodo
+[1] 0.006 0.007 0.004 0.005 0.004
+
+Lasso recall
+[1] 0.983
+
+Lasso precision
+[1] 0.378
+
+Elastic net recall
+[1] 0.984
+
+Elastic net precision
+[1] 0.352
+
+Repeticiones fallidas: 0
+
+======================================
+
+4 clases - R 50 - n 1500 - m 20000 - p 10
+Tiempo total
+Time difference of 5.504244 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.069 0.013 0.011 0.133 0.014
+
+SD por metodo
+[1] 0.006 0.003 0.002 0.005 0.002
+
+Lasso recall
+[1] 1
+
+Lasso precision
+[1] 0.321
+
+Elastic net recall
+[1] 0.948
+
+Elastic net precision
+[1] 0.302
+
+Repeticiones fallidas: 0
+
+======================================
+======================================
+======================================
+
+3 clases - R 50 - n 1500 - m 20000 - p 10
+Tiempo total
+Time difference of 5.675075 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.057 0.008 0.007 0.116 0.010
+
+SD por metodo
+[1] 0.006 0.002 0.002 0.006 0.002
+
+Lasso recall
+[1] 0.778
+
+Lasso precision
+[1] 0.358
+
+Elastic net recall
+[1] 0.929
+
+Elastic net precision
+[1] 0.331
+
+Repeticiones fallidas: 0
+
+======================================
+
+3 clases - R 50 - n 1500 - m 20000 - p 50
+Tiempo total
+Time difference of 18.02605 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.080 0.040 0.028 0.278 0.030
+
+SD por metodo
+[1] 0.007 0.006 0.003 0.009 0.003
+
+Lasso recall
+[1] 0.839
+
+Lasso precision
+[1] 0.406
+
+Elastic net recall
+[1] 0.992
+
+Elastic net precision
+[1] 0.361
+
+Repeticiones fallidas: 0
+
+======================================
+
+3 clases - R 50 - n 1500 - m 20000 - p 100
+Tiempo total
+Time difference of 21.50835 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.092 0.069 0.047 0.246 0.051
+
+SD por metodo
+[1] 0.005 0.006 0.004 0.003 0.004
+
+Lasso recall
+[1] 0.776
+
+Lasso precision
+[1] 0.438
+
+Elastic net recall
+[1] 0.805
+
+Elastic net precision
+[1] 0.38
+
+Repeticiones fallidas: 0
+
+======================================
+
+3 clases - R 50 - n 1500 - m 20000 - p 200
+Tiempo total
+Time difference of 24.6655 mins
+
+Promedio de mal clasificacion por metodo
+[1] 0.143 0.134 0.090 0.329 0.093
+
+SD por metodo
+[1] 0.005 0.010 0.006 0.003 0.005
+
+Lasso recall
+[1] 0.76
+
+Lasso precision
+[1] 0.473
+
+Elastic net recall
+[1] 0.784
+
+Elastic net precision
+[1] 0.435
+
+Repeticiones fallidas: 0
+
+======================================
+
+
+
+
+
+
+
