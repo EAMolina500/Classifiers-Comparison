@@ -37,7 +37,7 @@ The core problem addressed by this project is the evaluation of classification a
 ## Usage Instructions
 
 1. Clone the repository:  
-   ```bash
+   ```
    git clone https://github.com/your-repo-name.git
    ```
 2. Install the latest version of R and an IDE like RStudio.
@@ -46,6 +46,8 @@ The core problem addressed by this project is the evaluation of classification a
 source("scripts/classification_methods_comparison_tool.R")
 ```
 4. Run the toy example included in the script or modify the parameters as needed.
+
+---
 
 ## Example: Parameter Definition:
 
@@ -57,6 +59,8 @@ nnull <- round(.3*x, 0)
 beta1 <- c(rep(0, x-nnull), runif(nnull, -0.5, 0.5))
 beta2 <- c(runif(nnull, -0.5, 0.5), rep(0, x-nnull))
 ```
+
+---
 
 ## Run simulation
 
@@ -71,6 +75,8 @@ results <- Simulate(
 )
 ```
 
+---
+
 ## View results
 
 ```
@@ -83,6 +89,8 @@ print(results)
 - <ins>Precision and Recall</ins>: For LASSO and Elastic Net models.
 - <ins>Metadata</ins>: Total time, number of attempts and successful iterations.
 
+---
+
 ## Dependencies:
 
 To install dependencies, use the following command:
@@ -91,10 +99,13 @@ To install dependencies, use the following command:
 install.packages(c("glmnet", "randomForest"))
 ```
 
+---
+
 ## Author
 
 Molina, Agustin
-### Undergraduate Student at the National University of Río Cuarto
+
+---
 
 ## Year
 
